@@ -1,0 +1,58 @@
+# Bytecode and other Python-related files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*~
+
+# Virtual environment and Python dependencies
+venv/
+.venv/
+.env/
+*.env
+*.lock
+*.log
+
+# Django specific
+db.sqlite3
+db.sqlite3-journal
+*.pot
+*.pyc
+.media/
+staticfiles/
+templates/__pycache__/
+
+# Pytest and pytest cache
+pytest_cache/
+.cache/
+
+# Migrations (optional, if you prefer to regenerate them in new environments)
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.idea/
+*.iml
+.vscode/
+
+# Compiled files and backups
+*.swp
+*.swo
+
+# Package managers (Poetry and Pipenv)
+poetry.lock
+Pipfile
+Pipfile.lock
+
+# Temporary files
+tmp/
+*.tmp

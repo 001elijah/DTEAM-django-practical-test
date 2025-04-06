@@ -1,0 +1,696 @@
+[
+  {
+    "model": "main.user",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Doe"
+    }
+  },
+  {
+    "model": "main.user",
+    "pk": 2,
+    "fields": {
+      "first_name": "Jane",
+      "last_name": "Smith"
+    }
+  },
+  {
+    "model": "main.user",
+    "pk": 3,
+    "fields": {
+      "first_name": "Illia",
+      "last_name": "Zolotukha"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 1,
+    "fields": {
+      "skill_name": "Python"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 2,
+    "fields": {
+      "skill_name": "Django"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 3,
+    "fields": {
+      "skill_name": "PostgreSQL"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 4,
+    "fields": {
+      "skill_name": "HTML5"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 5,
+    "fields": {
+      "skill_name": "CSS3"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 6,
+    "fields": {
+      "skill_name": "SASS"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 7,
+    "fields": {
+      "skill_name": "TailwindCSS"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 8,
+    "fields": {
+      "skill_name": "MUI"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 9,
+    "fields": {
+      "skill_name": "JavaScript"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 10,
+    "fields": {
+      "skill_name": "TypeScript"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 11,
+    "fields": {
+      "skill_name": "Angular"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 12,
+    "fields": {
+      "skill_name": "React"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 13,
+    "fields": {
+      "skill_name": "React Native"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 14,
+    "fields": {
+      "skill_name": "Redux"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 15,
+    "fields": {
+      "skill_name": "Next.js"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 16,
+    "fields": {
+      "skill_name": "Jest"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 17,
+    "fields": {
+      "skill_name": "Ruby on Rails"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 18,
+    "fields": {
+      "skill_name": "RSpec"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 19,
+    "fields": {
+      "skill_name": "Node.js"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 20,
+    "fields": {
+      "skill_name": "Nest.js"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 21,
+    "fields": {
+      "skill_name": "Php(Laravel)"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 22,
+    "fields": {
+      "skill_name": "MySQL"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 23,
+    "fields": {
+      "skill_name": "MongoDB"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 24,
+    "fields": {
+      "skill_name": "SQLite"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 25,
+    "fields": {
+      "skill_name": "Firebase"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 26,
+    "fields": {
+      "skill_name": "DatoCMS"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 27,
+    "fields": {
+      "skill_name": "GraphQL"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 28,
+    "fields": {
+      "skill_name": "Flask"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 29,
+    "fields": {
+      "skill_name": "AWS"
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 1,
+    "fields": {
+      "project_name": "Portfolio Website",
+      "project_description": "A personal portfolio website showcasing my work and skills."
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 2,
+    "fields": {
+      "project_name": "Inventory Management System",
+      "project_description": "A system for real-time inventory tracking."
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 3,
+    "fields": {
+      "project_name": "Deep Personality SPA [Php, Angular, SCSS, TypeScript]",
+      "project_description": "A single page application for assessing a personality type"
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 4,
+    "fields": {
+      "project_name": "Vision360 SPA [Ruby on Rails, React, PostgreSQL, TypeScript]",
+      "project_description": "A dashboard to view and assess macro financial data"
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 5,
+    "fields": {
+      "project_name": "Klarity Architect SPA [Next.js, MUI, GraphQL, TypeScript]",
+      "project_description": "A tool for making up customer documentation featuring AI"
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 6,
+    "fields": {
+      "project_name": "Allison SPA [Ruby on Rails, React, PostgreSQL]",
+      "project_description": "A tool to manage user financial data submissions"
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 7,
+    "fields": {
+      "project_name": "Employer Management App [React Native, Python, Flask]",
+      "project_description": "Mobile app to manage company employees"
+    }
+  },
+  {
+    "model": "main.bioitem",
+    "pk": 1,
+    "fields": {
+      "bio_item": "A passionate backend developer.",
+      "user": 1
+    }
+  },
+  {
+    "model": "main.bioitem",
+    "pk": 2,
+    "fields": {
+      "bio_item": "An innovative full-stack developer and mentor.",
+      "user": 2
+    }
+  },
+  {
+    "model": "main.bioitem",
+    "pk": 3,
+    "fields": {
+      "bio_item": "As a developer, I have commercial experience in building user-friendly web applications using modern technologies. I thrive in dynamic environments, adapt quickly, and take a responsible, proactive approach to problem-solving.",
+      "user": 3
+    }
+  },
+  {
+    "model": "main.contacttype",
+    "pk": 1,
+    "fields": {
+      "contact_type": "Email"
+    }
+  },
+  {
+    "model": "main.contacttype",
+    "pk": 2,
+    "fields": {
+      "contact_type": "Phone"
+    }
+  },
+  {
+    "model": "main.contacttype",
+    "pk": 3,
+    "fields": {
+      "contact_type": "Profile"
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 1,
+    "fields": {
+      "contact": "john.doe@example.com",
+      "user": 1,
+      "contact_type": 1
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 2,
+    "fields": {
+      "contact": "+1 (212) 555-0198",
+      "user": 1,
+      "contact_type": 2
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 3,
+    "fields": {
+      "contact": "jane.smith@example.com",
+      "user": 2,
+      "contact_type": 1
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 4,
+    "fields": {
+      "contact": "job.illia.igorevich@gmail.com",
+      "user": 3,
+      "contact_type": 1
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 5,
+    "fields": {
+      "contact": "+380958360434",
+      "user": 3,
+      "contact_type": 2
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 6,
+    "fields": {
+      "contact": "https://www.linkedin.com/in/illia-zolotukha/",
+      "user": 3,
+      "contact_type": 3
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "skill": 1
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "skill": 2
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 3,
+    "fields": {
+      "user": 2,
+      "skill": 2
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "skill": 1
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 5,
+    "fields": {
+      "user": 3,
+      "skill": 2
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 6,
+    "fields": {
+      "user": 3,
+      "skill": 3
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "skill": 4
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 8,
+    "fields": {
+      "user": 3,
+      "skill": 5
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 9,
+    "fields": {
+      "user": 3,
+      "skill": 6
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 10,
+    "fields": {
+      "user": 3,
+      "skill": 7
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 11,
+    "fields": {
+      "user": 3,
+      "skill": 8
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 12,
+    "fields": {
+      "user": 3,
+      "skill": 9
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 13,
+    "fields": {
+      "user": 3,
+      "skill": 10
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 14,
+    "fields": {
+      "user": 3,
+      "skill": 11
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 15,
+    "fields": {
+      "user": 3,
+      "skill": 12
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 16,
+    "fields": {
+      "user": 3,
+      "skill": 13
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 17,
+    "fields": {
+      "user": 3,
+      "skill": 14
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 18,
+    "fields": {
+      "user": 3,
+      "skill": 15
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 19,
+    "fields": {
+      "user": 3,
+      "skill": 16
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 20,
+    "fields": {
+      "user": 3,
+      "skill": 17
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 21,
+    "fields": {
+      "user": 3,
+      "skill": 18
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 22,
+    "fields": {
+      "user": 3,
+      "skill": 19
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 23,
+    "fields": {
+      "user": 3,
+      "skill": 20
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 24,
+    "fields": {
+      "user": 3,
+      "skill": 21
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 25,
+    "fields": {
+      "user": 3,
+      "skill": 22
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 26,
+    "fields": {
+      "user": 3,
+      "skill": 23
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 27,
+    "fields": {
+      "user": 3,
+      "skill": 24
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 28,
+    "fields": {
+      "user": 3,
+      "skill": 25
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 29,
+    "fields": {
+      "user": 3,
+      "skill": 26
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 30,
+    "fields": {
+      "user": 3,
+      "skill": 27
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 31,
+    "fields": {
+      "user": 3,
+      "skill": 28
+    }
+  },
+  {
+    "model": "main.userskill",
+    "pk": 32,
+    "fields": {
+      "user": 3,
+      "skill": 29
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "project": 1
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "project": 2
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "project": 3
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 4,
+    "fields": {
+      "user": 3,
+      "project": 4
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 5,
+    "fields": {
+      "user": 3,
+      "project": 5
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 6,
+    "fields": {
+      "user": 3,
+      "project": 6
+    }
+  },
+  {
+    "model": "main.userproject",
+    "pk": 7,
+    "fields": {
+      "user": 3,
+      "project": 7
+    }
+  }
+]
