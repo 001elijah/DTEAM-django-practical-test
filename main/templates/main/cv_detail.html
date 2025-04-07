@@ -11,7 +11,7 @@
 </head>
 <body {% if not request %}style="font-family: 'Open Sans', Calibri, Candara, Arial, sans-serif;"{% endif %}>
 <section id="cv-detail">
-    <div class="container mt-5">
+    <div class="container{% if request %} mt-5{% endif %}">
         {% if request %}
             <div class="text-right mb-4">
                 <a href="{% url 'cv_generate_pdf' user.id %}" class="btn btn-primary" target="_blank">
@@ -33,16 +33,24 @@
                 <hr class="my-4">
                 <h5 class="card-title">Skills</h5>
                 <div class="d-flex align-items-center justify-content-start flex-wrap gap-2">
-                    {% for skill in skills %}
-                        <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
-                    {% endfor %}
+                    {% if skills %}
+                        {% for skill in skills %}
+                            <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="card-text">No skills available.</span>
+                    {% endif %}
                 </div>
                 <hr class="my-4">
                 <h5 class="card-title">Projects</h5>
-                {% for project in projects %}
-                    <p class="card-text"><b>{{ project.project_name }}</b></p>
-                    <p class="card-text">{{ project.project_description }}</p>
-                {% endfor %}
+                {% if projects %}
+                    {% for project in projects %}
+                        <p class="card-text"><b>{{ project.project_name }}</b></p>
+                        <p class="card-text">{{ project.project_description }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p class="card-text">No projects available.</p>
+                {% endif %}
                 <hr class="my-4">
                 <h5 class="card-title">Contacts</h5>
                 {% if contacts %}
