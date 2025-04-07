@@ -22,4 +22,5 @@ from main import views
 urlpatterns = [
     path("", views.cv_list, name="cv_list"),
     path("cv/<int:pk>/", views.cv_detail, name="cv_detail"),
+    path("cv/<int:pk>/download-pdf/", views.cv_generate_pdf, name="cv_generate_pdf"),
 ]

@@ -9,9 +9,16 @@
     <title>{{ cv.firstname }} {{ cv.lastname }}</title>
     {% bootstrap_css %}
 </head>
-<body>
+<body {% if not request %}style="font-family: 'Open Sans', Calibri, Candara, Arial, sans-serif;"{% endif %}>
 <section id="cv-detail">
     <div class="container mt-5">
+        {% if request %}
+            <div class="text-right mb-4">
+                <a href="{% url 'cv_generate_pdf' user.id %}" class="btn btn-primary" target="_blank">
+                    Download as PDF
+                </a>
+            </div>
+        {% endif %}
         <div class="card bg-light mb-3">
             <div class="card-header">
                 <h2>{{ user.first_name }} {{ user.last_name }}</h2>
@@ -23,40 +30,38 @@
                 {% else %}
                     <p class="card-text">No bio available for this user.</p>
                 {% endif %}
-                <ul class="list-group list-group-flush">
-                    <li class="bg-light list-group-item">
-                        <h5 class="card-title">Skills</h5>
-                        {% for skill in skills %}
-                            <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
-                        {% endfor %}
-                    </li>
-                    <li class="bg-light list-group-item">
-                        <h5 class="card-title">Projects</h5>
-                        {% for project in projects %}
-                            <p class="card-text"><b>{{ project.project_name }}</b></p>
-                            <p class="card-text">{{ project.project_description }}</p>
-                        {% endfor %}
-                    </li>
-                    <li class="bg-light list-group-item">
-                        <h5 class="card-title">Contacts</h5>
-                        {% if contacts %}
-                            {% for contact in contacts %}
-                                <span class="card-text">{{ contact.contact_type.contact_type }}: </span>
-                                {% if contact.contact_type.contact_type == 'Email' %}
-                                    <a href="mailto:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
-                                {% elif contact.contact_type.contact_type == 'Phone' %}
-                                    <a href="tel:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
-                                {% elif contact.contact_type.contact_type == 'Profile' %}
-                                    <a href="{{ contact.contact }}" class="card-text" target="_blank">{{ contact.contact }}</a>
-                                {% else %}
-                                    <p class="card-text">{{ contact.contact }}</p>
-                                {% endif %}
-                            {% endfor %}
+                <hr class="my-4">
+                <h5 class="card-title">Skills</h5>
+                <div class="d-flex align-items-center justify-content-start flex-wrap gap-2">
+                    {% for skill in skills %}
+                        <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
+                    {% endfor %}
+                </div>
+                <hr class="my-4">
+                <h5 class="card-title">Projects</h5>
+                {% for project in projects %}
+                    <p class="card-text"><b>{{ project.project_name }}</b></p>
+                    <p class="card-text">{{ project.project_description }}</p>
+                {% endfor %}
+                <hr class="my-4">
+                <h5 class="card-title">Contacts</h5>
+                {% if contacts %}
+                    {% for contact in contacts %}
+                        <span class="card-text">{{ contact.contact_type.contact_type }}: </span>
+                        {% if contact.contact_type.contact_type == 'Email' %}
+                            <a href="mailto:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
+                        {% elif contact.contact_type.contact_type == 'Phone' %}
+                            <a href="tel:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
+                        {% elif contact.contact_type.contact_type == 'Profile' %}
+                            <a href="{{ contact.contact }}" class="card-text"
+                               target="_blank">{{ contact.contact }}</a>
                         {% else %}
-                            <p class="card-text">No contact information available.</p>
+                            <p class="card-text">{{ contact.contact }}</p>
                         {% endif %}
-                    </li>
-                </ul>
+                    {% endfor %}
+                {% else %}
+                    <p class="card-text">No contact information available.</p>
+                {% endif %}
             </div>
         </div>
     </div>
