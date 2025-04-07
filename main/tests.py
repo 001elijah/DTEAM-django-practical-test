@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
+from rest_framework import status
+from rest_framework.test import APITestCase
 
 from main.models import (
     BioItem,
@@ -68,3 +70,35 @@ class CVViewsTestCase(TestCase):
 
         self.assertContains(response, "john.doe@example.com")
         self.assertContains(response, "123-456-7890")
+
+
+class UserAPITestCase(APITestCase):
+    def setUp(self):
+        self.user = User.objects.create(first_name="John", last_name="Doe")
+
+    def test_list_users(self):
+        response = self.client.get("/users/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertGreaterEqual(len(response.data), 1)
+
+    def test_retrieve_user(self):
+        response = self.client.get(f"/users/{self.user.id}/")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["first_name"], "John")
+
+    def test_create_user(self):
+        data = {"first_name": "Jane", "last_name": "Smith"}
+        response = self.client.post("/users/", data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_update_user(self):
+        data = {"first_name": "Johnny"}
+        response = self.client.patch(f"/users/{self.user.id}/", data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.user.refresh_from_db()
+        self.assertEqual(self.user.first_name, "Johnny")
+
+    def test_delete_user(self):
+        response = self.client.delete(f"/users/{self.user.id}/")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertFalse(User.objects.filter(id=self.user.id).exists())

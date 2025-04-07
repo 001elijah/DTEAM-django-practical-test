@@ -16,11 +16,18 @@ Including another URLconf
 """
 
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 
 from main import views
+from main.views import UserViewSet
+
+router = DefaultRouter()
+router.register(r"users", UserViewSet, basename="user")
 
 urlpatterns = [
     path("", views.cv_list, name="cv_list"),
     path("cv/<int:pk>/", views.cv_detail, name="cv_detail"),
     path("cv/<int:pk>/download-pdf/", views.cv_generate_pdf, name="cv_generate_pdf"),
 ]
+
+urlpatterns += router.urls

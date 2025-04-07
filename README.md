@@ -296,3 +296,24 @@ To run tests for the application:
 ---
 
 By following these steps, you will be able to set up the project, manage dependencies, and load initial data into the database without issues.
+
+## REST API Endpoints
+
+- **List Users**: `GET /users/`
+- **Retrieve User**: `GET /users/<id>/`
+- **Create User**: `POST /users/`
+  Example:
+  ```
+  {
+      "first_name": "Jane",
+      "last_name": "Doe"
+  }
+  ```
+- **Update User**: `PATCH /users/<id>/`
+  Example:
+  ```
+  {
+      "first_name": "Johnathan"
+  }
+  ```
+- **Delete User**: `DELETE /users/<id>/`

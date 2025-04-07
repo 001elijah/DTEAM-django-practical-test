@@ -3,9 +3,11 @@ import random
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.template.loader import render_to_string
+from rest_framework import viewsets
 from weasyprint import HTML
 
 from .models import User
+from .serializers import UserSerializer
 
 
 def cv_list(request):
@@ -59,6 +61,12 @@ def cv_generate_pdf(request, pk):
         f'inline; filename="{context["user"].first_name}_'
         f'{context["user"].last_name}_CV.pdf"'
     )
+
     HTML(string=html_content).write_pdf(response)
 
     return response
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
