@@ -1,0 +1,18 @@
+[
+  {
+    "model": "main.candidateproject",
+    "pk": 1,
+    "fields": {
+      "candidate": 1,
+      "project": 1
+    }
+  },
+  {
+    "model": "main.candidateproject",
+    "pk": 2,
+    "fields": {
+      "candidate": 2,
+      "project": 2
+    }
+  }
+]

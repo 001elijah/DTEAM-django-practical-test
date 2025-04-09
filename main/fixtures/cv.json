@@ -1,6 +1,6 @@
 [
   {
-    "model": "main.user",
+    "model": "main.candidate",
     "pk": 1,
     "fields": {
       "first_name": "John",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "model": "main.user",
+    "model": "main.candidate",
     "pk": 2,
     "fields": {
       "first_name": "Jane",
@@ -16,7 +16,7 @@
     }
   },
   {
-    "model": "main.user",
+    "model": "main.candidate",
     "pk": 3,
     "fields": {
       "first_name": "Illia",
@@ -287,7 +287,7 @@
     "pk": 1,
     "fields": {
       "bio_item": "A passionate backend developer.",
-      "user": 1
+      "candidate": 1
     }
   },
   {
@@ -295,7 +295,7 @@
     "pk": 2,
     "fields": {
       "bio_item": "An innovative full-stack developer and mentor.",
-      "user": 2
+      "candidate": 2
     }
   },
   {
@@ -303,7 +303,7 @@
     "pk": 3,
     "fields": {
       "bio_item": "As a developer, I have commercial experience in building user-friendly web applications using modern technologies. I thrive in dynamic environments, adapt quickly, and take a responsible, proactive approach to problem-solving.",
-      "user": 3
+      "candidate": 3
     }
   },
   {
@@ -332,7 +332,7 @@
     "pk": 1,
     "fields": {
       "contact": "john.doe@example.com",
-      "user": 1,
+      "candidate": 1,
       "contact_type": 1
     }
   },
@@ -341,7 +341,7 @@
     "pk": 2,
     "fields": {
       "contact": "+1 (212) 555-0198",
-      "user": 1,
+      "candidate": 1,
       "contact_type": 2
     }
   },
@@ -350,7 +350,7 @@
     "pk": 3,
     "fields": {
       "contact": "jane.smith@example.com",
-      "user": 2,
+      "candidate": 2,
       "contact_type": 1
     }
   },
@@ -359,7 +359,7 @@
     "pk": 4,
     "fields": {
       "contact": "job.illia.igorevich@gmail.com",
-      "user": 3,
+      "candidate": 3,
       "contact_type": 1
     }
   },
@@ -368,7 +368,7 @@
     "pk": 5,
     "fields": {
       "contact": "+380958360434",
-      "user": 3,
+      "candidate": 3,
       "contact_type": 2
     }
   },
@@ -377,319 +377,319 @@
     "pk": 6,
     "fields": {
       "contact": "https://www.linkedin.com/in/illia-zolotukha/",
-      "user": 3,
+      "candidate": 3,
       "contact_type": 3
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 1,
     "fields": {
-      "user": 1,
+      "candidate": 1,
       "skill": 1
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 2,
     "fields": {
-      "user": 1,
+      "candidate": 1,
       "skill": 2
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 3,
     "fields": {
-      "user": 2,
+      "candidate": 2,
       "skill": 2
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 4,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 1
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 5,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 2
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 6,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 3
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 7,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 4
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 8,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 5
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 9,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 6
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 10,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 7
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 11,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 8
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 12,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 9
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 13,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 10
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 14,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 11
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 15,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 12
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 16,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 13
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 17,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 14
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 18,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 15
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 19,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 16
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 20,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 17
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 21,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 18
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 22,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 19
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 23,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 20
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 24,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 21
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 25,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 22
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 26,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 23
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 27,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 24
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 28,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 25
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 29,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 26
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 30,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 27
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 31,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 28
     }
   },
   {
-    "model": "main.userskill",
+    "model": "main.candidateskill",
     "pk": 32,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "skill": 29
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 1,
     "fields": {
-      "user": 1,
+      "candidate": 1,
       "project": 1
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 2,
     "fields": {
-      "user": 2,
+      "candidate": 2,
       "project": 2
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 3,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "project": 3
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 4,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "project": 4
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 5,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "project": 5
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 6,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "project": 6
     }
   },
   {
-    "model": "main.userproject",
+    "model": "main.candidateproject",
     "pk": 7,
     "fields": {
-      "user": 3,
+      "candidate": 3,
       "project": 7
     }
   }
