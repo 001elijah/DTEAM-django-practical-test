@@ -1,0 +1,20 @@
+[
+  {
+    "model": "main.contact",
+    "pk": 1,
+    "fields": {
+      "contact": "john.doe@example.com",
+      "candidate": 1,
+      "contact_type": 1
+    }
+  },
+  {
+    "model": "main.contact",
+    "pk": 2,
+    "fields": {
+      "contact": "+1 (212) 555-0198",
+      "candidate": 2,
+      "contact_type": 2
+    }
+  }
+]

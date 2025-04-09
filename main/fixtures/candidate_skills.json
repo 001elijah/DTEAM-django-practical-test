@@ -1,0 +1,18 @@
+[
+  {
+    "model": "main.candidateskill",
+    "pk": 1,
+    "fields": {
+      "candidate": 1,
+      "skill": 1
+    }
+  },
+  {
+    "model": "main.candidateskill",
+    "pk": 2,
+    "fields": {
+      "candidate": 2,
+      "skill": 2
+    }
+  }
+]

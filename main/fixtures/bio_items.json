@@ -1,0 +1,18 @@
+[
+  {
+    "model": "main.bioitem",
+    "pk": 1,
+    "fields": {
+      "bio_item": "A seasoned software engineer.",
+      "candidate": 1
+    }
+  },
+  {
+    "model": "main.bioitem",
+    "pk": 2,
+    "fields": {
+      "bio_item": "Software Developer at XYZ.",
+      "candidate": 2
+    }
+  }
+]

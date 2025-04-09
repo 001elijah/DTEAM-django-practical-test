@@ -1,0 +1,16 @@
+[
+  {
+    "model": "main.skill",
+    "pk": 1,
+    "fields": {
+      "skill_name": "Python"
+    }
+  },
+  {
+    "model": "main.skill",
+    "pk": 2,
+    "fields": {
+      "skill_name": "Django"
+    }
+  }
+]

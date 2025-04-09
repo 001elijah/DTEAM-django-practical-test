@@ -1,0 +1,23 @@
+[
+  {
+    "model": "main.contacttype",
+    "pk": 1,
+    "fields": {
+      "contact_type": "Email"
+    }
+  },
+  {
+    "model": "main.contacttype",
+    "pk": 2,
+    "fields": {
+      "contact_type": "Phone"
+    }
+  },
+  {
+    "model": "main.contacttype",
+    "pk": 3,
+    "fields": {
+      "contact_type": "Profile"
+    }
+  }
+]

@@ -15,19 +15,80 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.urls import path
+from django.contrib.auth import views as auth_views
+from django.urls import include, path
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from CVProject.constants import API_BASE_URL, API_URLS, BASE_URL
 from main import views
-from main.views import UserViewSet
+from main.views import (
+    BioItemViewSet,
+    CandidateProjectViewSet,
+    CandidateSkillViewSet,
+    CandidateSummaryViewSet,
+    CandidateViewSet,
+    ContactTypeViewSet,
+    ContactViewSet,
+    ProjectViewSet,
+    SkillViewSet,
+    UserRegistrationView,
+)
 
 router = DefaultRouter()
-router.register(r"users", UserViewSet, basename="user")
+router.register(
+    API_URLS["candidates"].strip("/"), CandidateViewSet, basename="candidate"
+)
+router.register(API_URLS["bio_items"].strip("/"), BioItemViewSet, basename="bio_item")
+router.register(API_URLS["skills"].strip("/"), SkillViewSet, basename="skill")
+router.register(
+    API_URLS["candidate_skills"].strip("/"),
+    CandidateSkillViewSet,
+    basename="candidate_skill",
+)
+router.register(API_URLS["projects"].strip("/"), ProjectViewSet, basename="project")
+router.register(
+    API_URLS["candidate_projects"].strip("/"),
+    CandidateProjectViewSet,
+    basename="candidate_project",
+)
+router.register(API_URLS["contacts"].strip("/"), ContactViewSet, basename="contact")
+router.register(
+    API_URLS["contact_types"].strip("/"), ContactTypeViewSet, basename="contact_type"
+)
+router.register(
+    API_URLS["candidate_summaries"].strip("/"),
+    CandidateSummaryViewSet,
+    basename="candidate_summary",
+)
 
-urlpatterns = [
+# API routes
+api_patterns = [
+    path("register/", UserRegistrationView.as_view(), name="user_register"),
+    path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+]
+
+# Admin/Employer routes
+admin_patterns = [
+    path(
+        "accounts/login/",
+        auth_views.LoginView.as_view(next_page="cv_list"),
+        name="login",
+    ),
+    path(
+        "accounts/logout/",
+        auth_views.LogoutView.as_view(next_page="login"),
+        name="logout",
+    ),
     path("", views.cv_list, name="cv_list"),
     path("cv/<int:pk>/", views.cv_detail, name="cv_detail"),
     path("cv/<int:pk>/download-pdf/", views.cv_generate_pdf, name="cv_generate_pdf"),
+]
+
+urlpatterns = [
+    path(API_BASE_URL.lstrip("/"), include(api_patterns)),
+    path(BASE_URL, include(admin_patterns)),
 ]
 
 urlpatterns += router.urls

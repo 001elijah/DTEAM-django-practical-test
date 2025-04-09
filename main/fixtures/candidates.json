@@ -1,0 +1,20 @@
+[
+  {
+    "model": "main.candidate",
+    "pk": 1,
+    "fields": {
+      "first_name": "John",
+      "last_name": "Doe",
+      "created_by": 1
+    }
+  },
+  {
+    "model": "main.candidate",
+    "pk": 2,
+    "fields": {
+      "first_name": "Jane",
+      "last_name": "Smith",
+      "created_by": 1
+    }
+  }
+]
