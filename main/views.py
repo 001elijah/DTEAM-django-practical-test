@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from weasyprint import HTML
 
+from CVProject.constants import AUDIT_BASE_URL, LOGS_BASE_URL
+
 from .models import (
     BioItem,
     Candidate,
@@ -38,7 +40,15 @@ from .serializers import (
 @login_required
 def cv_list(request):
     candidates = Candidate.objects.all()
-    return render(request, "main/cv_list.html", {"candidates": candidates})
+    context = {
+        "tab_title": "CV List",
+        "title": "CV List",
+        "hint": "Select a candidate to view their CV.",
+        "no_candidates_message": "No candidates information available.",
+        "candidates": candidates,
+        "audit_logs_url": f"/{AUDIT_BASE_URL}{LOGS_BASE_URL}",
+    }
+    return render(request, "main/cv_list.html", context)
 
 
 def _get_cv_context(pk):
@@ -84,6 +94,23 @@ class LoginForm(forms.Form):
 @login_required
 def cv_detail(request, pk):
     context = _get_cv_context(pk)
+    candidate_first_name = context["candidate"].first_name
+    candidate_last_name = context["candidate"].last_name
+    additional_context = {
+        "tab_title": f"{candidate_first_name} {candidate_last_name} CV",
+        "home_btn_title": "< Home",
+        "audit_logs_url": f"/{AUDIT_BASE_URL}{LOGS_BASE_URL}",
+        "download_btn_title": "Download as PDF",
+        "bio_title": "Bio",
+        "skills_title": "Skills",
+        "projects_title": "Projects",
+        "contacts_title": "Contacts",
+        "no_bio_message": "No bio information available.",
+        "no_skills_message": "No skills information available.",
+        "no_projects_message": "No projects information available.",
+        "no_contacts_message": "No contacts information available.",
+    }
+    context.update(additional_context)
     return render(request, "main/cv_detail.html", context)
 
 

@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
 {% block title %}
-    {{ candidate.first_name|default:"Unknown" }} {{ candidate.last_name|default:"Candidate" }}
+    {{ tab_title }}
 {% endblock %}
 
 {% block content %}
     {% if request %}
         <header>
-            {% include "includes/navbar.html" with navbar_title="< Home" %}
+            {% include "includes/navbar.html" with home_btn_title=home_btn_title audit_logs_url=audit_logs_url %}
         </header>
     {% endif %}
     <section id="cv-detail">
@@ -15,7 +15,7 @@
             {% if request %}
                 <div class="text-right mb-4">
                     <a href="{% url 'cv_generate_pdf' candidate.id %}" class="btn btn-primary" target="_blank">
-                        Download as PDF
+                        {{ download_btn_title }}
                     </a>
                 </div>
             {% endif %}
@@ -24,43 +24,43 @@
                     <h2>{{ candidate.first_name }} {{ candidate.last_name }}</h2>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">Bio</h4>
+                    <h4 class="card-title">{{ bio_title }}</h4>
                     {% if bio %}
                         <p class="card-text">{{ bio }}</p>
                     {% else %}
-                        <p class="card-text">No bio available for this candidate.</p>
+                        <p class="card-text">{{ no_bio_message }}</p>
                     {% endif %}
                     <hr class="my-4">
-                    <h5 class="card-title">Skills</h5>
+                    <h5 class="card-title">{{ skills_title }}</h5>
                     <div class="d-flex align-items-center justify-content-start flex-wrap gap-2">
                         {% if skills %}
                             {% for skill in skills %}
                                 <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
                             {% endfor %}
                         {% else %}
-                            <span class="card-text">No skills available.</span>
+                            <span class="card-text">{{ no_skills_message }}</span>
                         {% endif %}
                     </div>
                     <hr class="my-4">
-                    <h5 class="card-title">Projects</h5>
+                    <h5 class="card-title">{{ projects_title }}</h5>
                     {% if projects %}
                         {% for project in projects %}
                             <p class="card-text"><b>{{ project.project_name }}</b></p>
                             <p class="card-text">{{ project.project_description }}</p>
                         {% endfor %}
                     {% else %}
-                        <p class="card-text">No projects available.</p>
+                        <p class="card-text">{{ no_projects_message }}</p>
                     {% endif %}
                     <hr class="my-4">
-                    <h5 class="card-title">Contacts</h5>
+                    <h5 class="card-title">{{ contacts_title }}</h5>
                     {% if contacts %}
                         {% for contact in contacts %}
                             <span class="card-text">{{ contact.contact_type.contact_type }}: </span>
-                            {% if contact.contact_type.contact_type == 'Email' %}
+                            {% if contact.contact_type.contact_type == "Email" %}
                                 <a href="mailto:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
-                            {% elif contact.contact_type.contact_type == 'Phone' %}
+                            {% elif contact.contact_type.contact_type == "Phone" %}
                                 <a href="tel:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
-                            {% elif contact.contact_type.contact_type == 'Profile' %}
+                            {% elif contact.contact_type.contact_type == "Profile" %}
                                 <a href="{{ contact.contact }}" class="card-text"
                                    target="_blank">{{ contact.contact }}</a>
                             {% else %}
@@ -68,7 +68,7 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                        <p class="card-text">No contact information available.</p>
+                        <p class="card-text">{{ no_contacts_message }}</p>
                     {% endif %}
                 </div>
             </div>

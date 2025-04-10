@@ -26,10 +26,6 @@ templates/__pycache__/
 pytest_cache/
 .cache/
 
-# Migrations (optional, if you prefer to regenerate them in new environments)
-*/migrations/*.py
-!*/migrations/__init__.py
-
 # Coverage reports
 htmlcov/
 .coverage
