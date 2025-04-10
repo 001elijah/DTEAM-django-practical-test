@@ -15,3 +15,4 @@ API_URLS = {
 
 AUDIT_BASE_URL = "audit/"
 LOGS_BASE_URL = "logs/"
+SETTINGS_BASE_URL = "settings/"

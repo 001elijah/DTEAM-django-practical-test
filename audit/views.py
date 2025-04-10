@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from CVProject.constants import AUDIT_BASE_URL
+from CVProject.constants import AUDIT_BASE_URL, SETTINGS_BASE_URL
 
 from .models import RequestLog
 
@@ -13,6 +13,7 @@ def recent_logs(request):
         "title": "Recent Request Logs",
         "logs": logs,
         "home_btn_title": "< Home",
+        "settings_url": f"/{SETTINGS_BASE_URL}",
         "column_one_title": "Timestamp",
         "column_two_title": "Method",
         "column_three_title": "Path",

@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ tab_title }}
+{% endblock %}
+
+{% block content %}
+    <header>
+        {% include "includes/navbar.html" with audit_logs_url=audit_logs_url %}
+    </header>
+    <section id="settings">
+        <div class="container mt-5">
+            <h1>{{ title }}</h1>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered overflow-auto">
+                    <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>DEBUG</strong></td>
+                        <td>{{ DEBUG }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>BASE_DIR</strong></td>
+                        <td>{{ BASE_DIR }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SECRET_KEY</strong></td>
+                        <td>{{ SECRET_KEY }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ALLOWED_HOSTS</strong></td>
+                        <td>
+                            {% if ALLOWED_HOSTS %}
+                                <ul>
+                                    {% for host in ALLOWED_HOSTS %}
+                                        <li>{{ host }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <em>No hosts defined</em>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>INSTALLED_APPS</strong></td>
+                        <td>
+                            <ul>
+                                {% for app in INSTALLED_APPS %}
+                                    <li>{{ app }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>MIDDLEWARE</strong></td>
+                        <td>
+                            <ul>
+                                {% for middleware in MIDDLEWARE %}
+                                    <li>{{ middleware }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>ROOT_URLCONF</strong></td>
+                        <td>{{ ROOT_URLCONF }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TEMPLATES</strong></td>
+                        <td>
+                            <pre>{{ TEMPLATES | pprint }}</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>WSGI_APPLICATION</strong></td>
+                        <td>{{ WSGI_APPLICATION }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>DATABASES</strong></td>
+                        <td>
+                            <pre>{{ DATABASES | pprint }}</pre>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>AUTH_PASSWORD_VALIDATORS</strong></td>
+                        <td>
+                            <ul>
+                                {% for validator in AUTH_PASSWORD_VALIDATORS %}
+                                    <li>{{ validator.NAME }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>LANGUAGE_CODE</strong></td>
+                        <td>{{ LANGUAGE_CODE }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TIME_ZONE</strong></td>
+                        <td>{{ TIME_ZONE }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USE_I18N</strong></td>
+                        <td>{{ USE_I18N }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>USE_TZ</strong></td>
+                        <td>{{ USE_TZ }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>STATIC_URL</strong></td>
+                        <td>{{ STATIC_URL }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>STATICFILES_DIRS</strong></td>
+                        <td>
+                            <ul>
+                                {% for static_dir in STATICFILES_DIRS %}
+                                    <li>{{ static_dir }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>DEFAULT_AUTO_FIELD</strong></td>
+                        <td>{{ DEFAULT_AUTO_FIELD }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>REST_FRAMEWORK</strong></td>
+                        <td>
+                            <pre>{{ REST_FRAMEWORK | pprint }}</pre>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock %}
