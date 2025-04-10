@@ -12,3 +12,6 @@ API_URLS = {
     "contact_types": f"{API_BASE_URL}contact_types/",
     "candidate_summaries": f"{API_BASE_URL}candidate_summaries/",
 }
+
+AUDIT_BASE_URL = "audit/"
+LOGS_BASE_URL = "logs/"

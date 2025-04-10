@@ -1595,3 +1595,11 @@ This workflow ensures efficient handling of candidate records:
 6. **Delete Candidate:** Remove a candidate and associated data when no longer needed.
 
 For more detailed information, refer to the API documentation or the backend implementation. This guide serves to clarify how API endpoints are used to manage candidate-related data efficiently.
+
+---
+
+# Request Logging and Recent Logs
+
+- **Middleware**: Automatically logs details for every HTTP request made to the application.
+  - Logs include: HTTP Method, Path, Query String, IP Address, User Agent, and the User (if authenticated).
+- **Recent Logs**: View the 10 most recent HTTP requests at `/audit/logs/`.

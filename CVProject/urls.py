@@ -20,7 +20,7 @@ from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from CVProject.constants import API_BASE_URL, API_URLS, BASE_URL
+from CVProject.constants import API_BASE_URL, API_URLS, AUDIT_BASE_URL, BASE_URL
 from main import views
 from main.views import (
     BioItemViewSet,
@@ -89,6 +89,7 @@ admin_patterns = [
 urlpatterns = [
     path(API_BASE_URL.lstrip("/"), include(api_patterns)),
     path(BASE_URL, include(admin_patterns)),
+    path(AUDIT_BASE_URL, include("audit.urls")),
 ]
 
 urlpatterns += router.urls

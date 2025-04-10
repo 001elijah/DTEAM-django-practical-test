@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 
 {% block title %}
-    CV List
+{{ tab_title }}
 {% endblock %}
 
 {% block content %}
     <header>
-        {% include "includes/navbar.html" %}
+        {% include "includes/navbar.html" with audit_logs_url=audit_logs_url %}
     </header>
     <section id="cv-list">
         <div class="container-lg mt-5">
             <div>
                 <h3>
-                    CV List<br/>
-                    <small class="text-body-secondary">pick a CV from the list below</small>
+                    {{ title }}<br/>
+                    <small class="text-body-secondary">{{ hint }}</small>
                 </h3>
                 {% if candidates %}
                     <ul class="list-group">
@@ -26,7 +26,7 @@
                         {% endfor %}
                     </ul>
                 {% else %}
-                    <p>No candidates information available.</p>
+                    <p>{{ no_candidates_message }}</p>
                 {% endif %}
             </div>
         </div>
