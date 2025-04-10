@@ -11,7 +11,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from weasyprint import HTML
 
-from CVProject.constants import AUDIT_BASE_URL, LOGS_BASE_URL
+from CVProject.constants import AUDIT_BASE_URL, LOGS_BASE_URL, SETTINGS_BASE_URL
 
 from .models import (
     BioItem,
@@ -38,6 +38,17 @@ from .serializers import (
 
 
 @login_required
+def settings_page(request):
+    context = {
+        "tab_title": "Settings",
+        "title": "Settings data",
+        "home_btn_title": "< Home",
+        "audit_logs_url": f"/{AUDIT_BASE_URL}{LOGS_BASE_URL}",
+    }
+    return render(request, "main/settings.html", context)
+
+
+@login_required
 def cv_list(request):
     candidates = Candidate.objects.all()
     context = {
@@ -47,6 +58,7 @@ def cv_list(request):
         "no_candidates_message": "No candidates information available.",
         "candidates": candidates,
         "audit_logs_url": f"/{AUDIT_BASE_URL}{LOGS_BASE_URL}",
+        "settings_url": f"/{SETTINGS_BASE_URL}",
     }
     return render(request, "main/cv_list.html", context)
 
@@ -100,6 +112,7 @@ def cv_detail(request, pk):
         "tab_title": f"{candidate_first_name} {candidate_last_name} CV",
         "home_btn_title": "< Home",
         "audit_logs_url": f"/{AUDIT_BASE_URL}{LOGS_BASE_URL}",
+        "settings_url": f"/{SETTINGS_BASE_URL}",
         "download_btn_title": "Download as PDF",
         "bio_title": "Bio",
         "skills_title": "Skills",
