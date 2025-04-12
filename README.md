@@ -168,10 +168,30 @@ Before proceeding, ensure you have the following installed on your machine:
 - **Python** (compatible with this project's version)
 - **pyenv**
 - **Poetry**
-- **SQLite** (default database for development)
+- **PostgreSQL**
 - **weasyprint** (install globally)
 
 ---
+
+## To build and run the app locally `.env.local` should be created:
+
+```aiignore
+# Django environment
+DEBUG=True
+
+# PostgreSQL configuration
+POSTGRES_DB=cvproject_db
+POSTGRES_USER=cv_user
+POSTGRES_PASSWORD=cv_password
+POSTGRES_HOST=localhost
+POSTGRES_PORT=5432
+```
+
+## Run PostgreSQL DB
+
+1. Start PostgreSQL database server
+2. Start PostgreSQL database
+3. Make sure the DB has a user `cv_user` with password `cv_password`
 
 ## Setting Up Python with `pyenv`
 
@@ -276,6 +296,7 @@ To start the Django development server:
 
 1. Run:
    ```bash
+   export ENVIRONMENT=development
    python manage.py runserver
    ```
 
@@ -1603,3 +1624,35 @@ For more detailed information, refer to the API documentation or the backend imp
 - **Middleware**: Automatically logs details for every HTTP request made to the application.
   - Logs include: HTTP Method, Path, Query String, IP Address, User Agent, and the User (if authenticated).
 - **Recent Logs**: View the 10 most recent HTTP requests at `/audit/logs/`.
+
+---
+
+# Run Docker
+
+To build and run Docker container `.env.production` should be created:
+```aiignore
+   # Django environment
+   DEBUG=False
+
+   # PostgreSQL configuration
+   POSTGRES_DB=cvproject_db
+   POSTGRES_USER=cv_user
+   POSTGRES_PASSWORD=cv_password
+   POSTGRES_HOST=db #should be the same as service name in docker-compose.yml
+   POSTGRES_PORT=5432
+```
+```bash
+docker-compose build
+```
+
+```bash
+docker-compose up
+```
+
+To load the initial data fixture (`cv.json`) into the database, use the following command:
+
+```bash
+docker-compose exec web python manage.py loaddata main/fixtures/cv.json
+```
+
+This command should only be run **after the services are up and the database is ready**.

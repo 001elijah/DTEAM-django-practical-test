@@ -11,7 +11,7 @@
     <title>{% block title %}CV Project{% endblock %}</title>
     {% bootstrap_css %}
 </head>
-<body {% if not request %}style="font-family: 'Open Sans', Calibri, Candara, Arial, sans-serif;"{% endif %}>
+<body {% if not request.path == "/accounts/login/" %} class="py-5" {% endif %} {% if not request %} style="font-family: 'Open Sans', Calibri, Candara, Arial, sans-serif;"{% endif %}>
 <main>
     {% block content %}{% endblock %}
 </main>
