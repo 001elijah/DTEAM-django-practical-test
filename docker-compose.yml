@@ -15,6 +15,21 @@
        depends_on:
          - db
 
+     redis:
+       image: "redis:alpine"
+       ports:
+         - "6379:6379"
+
+     celery:
+       build: .
+       command: celery -A CVProject worker --loglevel=info
+       volumes:
+         - .:/code
+       depends_on:
+         - redis
+       env_file:
+         - .env.production
+
      db:
        image: postgres:14
        container_name: postgres_db

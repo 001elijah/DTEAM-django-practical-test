@@ -90,6 +90,9 @@ admin_patterns = [
     path("", views.cv_list, name="cv_list"),
     path("cv/<int:pk>/", views.cv_detail, name="cv_detail"),
     path("cv/<int:pk>/download-pdf/", views.cv_generate_pdf, name="cv_generate_pdf"),
+    path(
+        "cv/<int:pk>/send-pdf-email/", views.send_cv_to_email, name="send_cv_to_email"
+    ),
 ]
 
 urlpatterns = [

@@ -1,15 +1,13 @@
 import random
 
 from django import forms
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
-from django.template.loader import render_to_string
+from django.shortcuts import get_object_or_404, redirect, render
 from rest_framework import status, viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from weasyprint import HTML
 
 from CVProject.constants import AUDIT_BASE_URL, LOGS_BASE_URL, SETTINGS_BASE_URL
 
@@ -35,6 +33,8 @@ from .serializers import (
     SkillSerializer,
     UserRegistrationSerializer,
 )
+from .tasks import send_candidate_pdf_email
+from .utils import generate_candidate_pdf
 
 
 @login_required
@@ -129,19 +129,25 @@ def cv_detail(request, pk):
 
 @login_required
 def cv_generate_pdf(request, pk):
-    context = _get_cv_context(pk)
+    return generate_candidate_pdf(pk)
 
-    html_content = render_to_string("main/cv_detail.html", context)
 
-    response = HttpResponse(content_type="application/pdf")
-    response["Content-Disposition"] = (
-        f'inline; filename="{context["candidate"].first_name}_'
-        f'{context["candidate"].last_name}_CV.pdf"'
-    )
-
-    HTML(string=html_content).write_pdf(response)
-
-    return response
+@login_required
+def send_cv_to_email(request, pk):
+    if request.method == "POST":
+        email = request.POST.get("email")
+        if email:
+            candidate = get_object_or_404(Candidate, pk=pk)
+            send_candidate_pdf_email.delay(candidate.id, email)
+            messages.success(
+                request,
+                f"PDF for {candidate.first_name} "
+                f"{candidate.last_name} is being sent to "
+                f"{email}.",
+            )
+        else:
+            messages.error(request, "Please provide a valid email.")
+    return redirect("cv_detail", pk=pk)
 
 
 class UserRegistrationView(APIView):
