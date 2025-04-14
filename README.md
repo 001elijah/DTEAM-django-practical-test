@@ -168,6 +168,7 @@ Before proceeding, ensure you have the following installed on your machine:
 - **Python** (compatible with this project's version)
 - **pyenv**
 - **Poetry**
+- **Redis**
 - **PostgreSQL**
 - **weasyprint** (install globally)
 
@@ -178,6 +179,7 @@ Before proceeding, ensure you have the following installed on your machine:
 ```aiignore
 # Django environment
 DEBUG=True
+SECRET_KEY=django-insecure--h3@n&eq-m8=mgyub2yk7pnmkcm2k$0i11jpqnqrmc=q02_vv9
 
 # PostgreSQL configuration
 POSTGRES_DB=cvproject_db
@@ -185,6 +187,24 @@ POSTGRES_USER=cv_user
 POSTGRES_PASSWORD=cv_password
 POSTGRES_HOST=localhost
 POSTGRES_PORT=5432
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+
+# Email service variables
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=smtp.sendgrid.net
+EMAIL_PORT=587
+FROM_EMAIL=email@example.com
+EMAIL_HOST_USER=apikey
+EMAIL_HOST_PASSWORD=your-sendgrid-api-key
+```
+
+## Run Redis
+
+## Run Celery within .venv (`CVProject` project name is case-sensitive)
+
+```aiignore
+celery -A CVProject worker --loglevel=info
 ```
 
 ## Run PostgreSQL DB
@@ -1632,14 +1652,25 @@ For more detailed information, refer to the API documentation or the backend imp
 To build and run Docker container `.env.production` should be created:
 ```aiignore
    # Django environment
-   DEBUG=False
+DEBUG=True
+SECRET_KEY=django-insecure--h3@n&eq-m8=mgyub2yk7pnmkcm2k$0i11jpqnqrmc=q02_vv9
 
-   # PostgreSQL configuration
-   POSTGRES_DB=cvproject_db
-   POSTGRES_USER=cv_user
-   POSTGRES_PASSWORD=cv_password
-   POSTGRES_HOST=db #should be the same as service name in docker-compose.yml
-   POSTGRES_PORT=5432
+# PostgreSQL configuration
+POSTGRES_DB=cvproject_db
+POSTGRES_USER=cv_user
+POSTGRES_PASSWORD=cv_password
+POSTGRES_HOST=db #should be the same as db service name in docker-compose.yml
+POSTGRES_PORT=5432
+
+CELERY_BROKER_URL = 'redis://redis:6379/0' #should be the same as redis service name in docker-compose.yml
+
+# Email service variables
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+EMAIL_HOST=smtp.sendgrid.net
+EMAIL_PORT=587
+FROM_EMAIL=email@example.com
+EMAIL_HOST_USER=apikey
+EMAIL_HOST_PASSWORD=your-sendgrid-api-key
 ```
 ```bash
 docker-compose build

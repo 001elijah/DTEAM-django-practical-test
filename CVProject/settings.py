@@ -28,12 +28,21 @@ else:
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure--h3@n&eq-m8=mgyub2yk7pnmkcm2k$0i11jpqnqrmc=q02_vv9"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost"]
+
+# Email configuration settings
+
+EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
+EMAIL_HOST = os.getenv("EMAIL_HOST")
+EMAIL_PORT = os.getenv("EMAIL_PORT")
+FROM_EMAIL = os.getenv("FROM_EMAIL")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
 # Application definition
 
@@ -48,6 +57,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "audit",
+    "django_celery_results",
 ]
 
 MIDDLEWARE = [
@@ -84,6 +94,15 @@ WSGI_APPLICATION = "CVProject.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+
+# Celery configuration
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+
+# Celery results backend to store task results
+CELERY_RESULT_BACKEND = "django-db"
+
 
 DATABASES = {
     "default": {

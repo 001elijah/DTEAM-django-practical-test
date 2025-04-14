@@ -13,10 +13,11 @@
     <section id="cv-detail">
         <div class="container{% if request %} mt-5{% endif %}">
             {% if request %}
-                <div class="text-right mb-4">
+                <div class="d-flex flex-wrap justify-content-between mb-4 gap-2">
                     <a href="{% url 'cv_generate_pdf' candidate.id %}" class="btn btn-primary" target="_blank">
                         {{ download_btn_title }}
                     </a>
+                    {% include "main/email_form.html" %}
                 </div>
             {% endif %}
             <div class="card bg-light mb-3">
