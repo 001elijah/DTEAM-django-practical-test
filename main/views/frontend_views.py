@@ -2,17 +2,12 @@ from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 
 from CVProject.constants import AUDIT_BASE_URL, LOGS_BASE_URL, SETTINGS_BASE_URL
 from main.models import Candidate
 from main.tasks import send_candidate_pdf_email
-from main.views.helpers import (
-    _get_cv_context,
-    _get_cv_detail_ui_context,
-    extract_clean_json,
-    generate_candidate_pdf,
-    translate_cv_content,
-)
+from main.views.helpers import generate_candidate_pdf, process_cv_context
 
 
 class LoginForm(forms.Form):
@@ -52,42 +47,45 @@ def cv_list(request):
 
 @login_required
 def cv_detail(request, pk):
-    cv_detail_context = _get_cv_context(pk)
-    candidate = cv_detail_context["candidate"]
-    cv_detail_ui_context = _get_cv_detail_ui_context(candidate)
-
-    cv_detail_context.update(cv_detail_ui_context)
-
     selected_language = request.GET.get("language")
-
-    if selected_language:
-        translation_data = translate_cv_content(
-            request, selected_language, cv_detail_context
-        )
-        parsed_translation_data = extract_clean_json(translation_data)
-        cv_detail_context.update(parsed_translation_data)
-
+    cv_detail_context = process_cv_context(pk, selected_language)
     return render(request, "main/cv_detail.html", cv_detail_context)
 
 
 @login_required
 def cv_generate_pdf(request, pk):
-    return generate_candidate_pdf(pk)
+    selected_language = request.GET.get("language")
+    cv_detail_context = process_cv_context(pk, selected_language)
+    return generate_candidate_pdf(cv_detail_context)
 
 
 @login_required
 def send_cv_to_email(request, pk):
     if request.method == "POST":
         email = request.POST.get("email")
+        selected_language = request.POST.get("language")
         if email:
+            cv_detail_context = process_cv_context(pk, selected_language)
+            pdf_response = generate_candidate_pdf(cv_detail_context)
+            pdf_content = pdf_response.content
+
             candidate = get_object_or_404(Candidate, pk=pk)
-            send_candidate_pdf_email.delay(candidate.id, email)
+            send_candidate_pdf_email.delay(
+                candidate.first_name, candidate.last_name, email, pdf_content
+            )
             messages.success(
                 request,
                 f"PDF for {candidate.first_name} "
                 f"{candidate.last_name} is being sent to "
                 f"{email}.",
             )
+            if selected_language:
+                return redirect(
+                    reverse("cv_detail", kwargs={"pk": pk})
+                    + f"?language={selected_language}"
+                )
+            else:
+                return redirect("cv_detail", pk=pk)
         else:
             messages.error(request, "Please provide a valid email.")
     return redirect("cv_detail", pk=pk)

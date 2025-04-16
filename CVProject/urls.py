@@ -45,8 +45,8 @@ from main.views.frontend_views import (
     cv_list,
     send_cv_to_email,
     settings_page,
-    translate_cv_content,
 )
+from main.views.helpers import translate_cv_content
 
 router = DefaultRouter()
 router.register(

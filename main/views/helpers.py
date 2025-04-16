@@ -4,7 +4,7 @@ import re
 
 from django.conf import settings
 from django.http import HttpResponse, JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from openai import OpenAI
 from weasyprint import HTML
@@ -156,10 +156,7 @@ def cv_content_to_translate(cv_detail_context):
     return cv_content
 
 
-def translate_cv_content(request, target_language, cv_detail_context):
-    if not target_language:
-        return render(request, "main/cv_detail.html", cv_detail_context)
-
+def translate_cv_content(target_language, cv_detail_context):
     content_to_translate = json.dumps(
         cv_content_to_translate(cv_detail_context), indent=2, ensure_ascii=False
     )
@@ -187,13 +184,25 @@ def translate_cv_content(request, target_language, cv_detail_context):
     return translation
 
 
-def generate_candidate_pdf(candidate_id):
-    context = _get_cv_context(candidate_id)
-    html_content = render_to_string("main/cv_detail.html", context)
+def process_cv_context(pk, selected_language=None):
+    cv_detail_context = _get_cv_context(pk)
+    candidate = cv_detail_context["candidate"]
+    cv_detail_ui_context = _get_cv_detail_ui_context(candidate)
+    cv_detail_context.update(cv_detail_ui_context)
+    if selected_language:
+        translation_data = translate_cv_content(selected_language, cv_detail_context)
+        parsed_translation_data = extract_clean_json(translation_data)
+        cv_detail_context.update(parsed_translation_data)
+
+    return cv_detail_context
+
+
+def generate_candidate_pdf(cv_detail_context):
+    html_content = render_to_string("main/cv_detail.html", cv_detail_context)
     response = HttpResponse(content_type="application/pdf")
     response["Content-Disposition"] = (
-        f'inline; filename="{context["candidate"].first_name}_'
-        f'{context["candidate"].last_name}_CV.pdf"'
+        f'inline; filename="{cv_detail_context["candidate"].first_name}_'
+        f'{cv_detail_context["candidate"].last_name}_CV.pdf"'
     )
     HTML(string=html_content).write_pdf(response)
     return response
