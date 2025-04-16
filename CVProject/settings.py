@@ -35,6 +35,12 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost"]
 
+# OPENAI
+
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+TRANSLATING_LANGUAGES = os.getenv("TRANSLATING_LANGUAGES")
+
 # Email configuration settings
 
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")

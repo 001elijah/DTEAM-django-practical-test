@@ -197,6 +197,9 @@ EMAIL_PORT=587
 FROM_EMAIL=email@example.com
 EMAIL_HOST_USER=apikey
 EMAIL_HOST_PASSWORD=your-sendgrid-api-key
+
+OPENAI_API_KEY=your-openai-api-key
+TRANSLATING_LANGUAGES=Cornish,Manx,Breton,Inuktitut,Kalaallisut,Romani,Occitan,Ladino,Northern Sami,Upper Sorbian,Kashubian,Zazaki,Chuvash,Livonian,Tsakonian,Saramaccan,Bislama
 ```
 
 ## Run Redis
@@ -1671,6 +1674,9 @@ EMAIL_PORT=587
 FROM_EMAIL=email@example.com
 EMAIL_HOST_USER=apikey
 EMAIL_HOST_PASSWORD=your-sendgrid-api-key
+
+OPENAI_API_KEY=your-openai-api-key
+TRANSLATING_LANGUAGES=Cornish,Manx,Breton,Inuktitut,Kalaallisut,Romani,Occitan,Ladino,Northern Sami,Upper Sorbian,Kashubian,Zazaki,Chuvash,Livonian,Tsakonian,Saramaccan,Bislama
 ```
 ```bash
 docker-compose build

@@ -93,6 +93,7 @@ admin_patterns = [
     path(
         "cv/<int:pk>/send-pdf-email/", views.send_cv_to_email, name="send_cv_to_email"
     ),
+    path("cv/<int:pk>/", views.translate_cv_content, name="translate_cv_content"),
 ]
 
 urlpatterns = [
