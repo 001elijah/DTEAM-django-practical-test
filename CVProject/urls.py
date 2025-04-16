@@ -46,7 +46,7 @@ from main.views.frontend_views import (
     send_cv_to_email,
     settings_page,
 )
-from main.views.helpers import translate_cv_content
+from main.views.helpers import remove_message, translate_cv_content
 
 router = DefaultRouter()
 router.register(
@@ -106,6 +106,7 @@ urlpatterns = [
     path(BASE_URL, include(admin_patterns)),
     path(AUDIT_BASE_URL, include("audit.urls")),
     path(SETTINGS_BASE_URL, settings_page, name="settings_page"),
+    path("remove-message/", remove_message, name="remove_message"),
 ]
 
 urlpatterns += router.urls

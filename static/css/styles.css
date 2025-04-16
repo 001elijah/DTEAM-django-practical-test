@@ -6,3 +6,16 @@
         outline: none;
     }
 }
+
+.btn-fixed-width {
+    width: 150px;
+    text-align: center;
+
+    & .spinner-border {
+        margin-right: 0 !important;
+    }
+}
+
+.btn-no-uppercase {
+    text-transform: none !important;
+}

@@ -1,6 +1,10 @@
+import logging
+
 from celery import shared_task
 from django.conf import settings
 from django.core.mail import EmailMessage
+
+logger = logging.getLogger(__name__)
 
 
 @shared_task
@@ -23,4 +27,13 @@ def send_candidate_pdf_email(first_name, last_name, email, pdf_content):
         pdf_content,
         "application/pdf",
     )
-    email_message.send()
+    try:
+        email_message.send()
+        logger.info(f"Email successfully sent to {email} for {first_name} {last_name}.")
+        return "Email Sent Successfully"
+    except Exception as e:
+        logger.error(
+            f"Failed to send email to {email} for {first_name} {last_name}: {str(e)}",
+            exc_info=True,
+        )
+        raise

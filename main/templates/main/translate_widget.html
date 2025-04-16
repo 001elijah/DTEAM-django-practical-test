@@ -1,8 +1,26 @@
-<form method="GET" id="translation-form" action="{% url 'cv_detail' candidate.id %}" class="form-group d-flex gap-2">
-    <select id="language" name="language" class="form-select">
-        {% for language in languages_list %}
-            <option value="{{ language }}">{{ language }}</option>
-        {% endfor %}
-    </select>
-    <button class="btn btn-primary" type="submit" >{{ translate_btn_title|default:"Translate" }}</button>
+<form method="GET" id="translate-widget" action="{% url 'cv_detail' candidate.id %}" class="form-group d-flex flex-wrap gap-2">
+    <label>
+        <select id="language" name="language" class="form-select">
+            {% for language in languages_list %}
+                <option value="{{ language }}">{{ language }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <button
+            class="btn btn-primary btn-fixed-width text-small btn-no-uppercase"
+            type="submit"
+            id="submit-translate-btn"
+    >
+        <span
+                id="translate-spinner"
+                class="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+                style="display: none;"
+        ></span>
+        {{ translate_btn_title|default:"Translate" }}
+    </button>
+    <a href="{% url 'cv_detail' candidate.id %}" class="btn btn-secondary" id="reset-translate-btn">
+        <i class="fa fa-rotate-right"></i>
+    </a>
 </form>
