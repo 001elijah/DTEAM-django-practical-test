@@ -27,8 +27,7 @@ from CVProject.constants import (
     BASE_URL,
     SETTINGS_BASE_URL,
 )
-from main import views
-from main.views import (
+from main.views.api_views import (
     BioItemViewSet,
     CandidateProjectViewSet,
     CandidateSkillViewSet,
@@ -39,6 +38,14 @@ from main.views import (
     ProjectViewSet,
     SkillViewSet,
     UserRegistrationView,
+)
+from main.views.frontend_views import (
+    cv_detail,
+    cv_generate_pdf,
+    cv_list,
+    send_cv_to_email,
+    settings_page,
+    translate_cv_content,
 )
 
 router = DefaultRouter()
@@ -87,20 +94,18 @@ admin_patterns = [
         auth_views.LogoutView.as_view(next_page="login"),
         name="logout",
     ),
-    path("", views.cv_list, name="cv_list"),
-    path("cv/<int:pk>/", views.cv_detail, name="cv_detail"),
-    path("cv/<int:pk>/download-pdf/", views.cv_generate_pdf, name="cv_generate_pdf"),
-    path(
-        "cv/<int:pk>/send-pdf-email/", views.send_cv_to_email, name="send_cv_to_email"
-    ),
-    path("cv/<int:pk>/", views.translate_cv_content, name="translate_cv_content"),
+    path("", cv_list, name="cv_list"),
+    path("cv/<int:pk>/", cv_detail, name="cv_detail"),
+    path("cv/<int:pk>/download-pdf/", cv_generate_pdf, name="cv_generate_pdf"),
+    path("cv/<int:pk>/send-pdf-email/", send_cv_to_email, name="send_cv_to_email"),
+    path("cv/<int:pk>/", translate_cv_content, name="translate_cv_content"),
 ]
 
 urlpatterns = [
     path(API_BASE_URL.lstrip("/"), include(api_patterns)),
     path(BASE_URL, include(admin_patterns)),
     path(AUDIT_BASE_URL, include("audit.urls")),
-    path(SETTINGS_BASE_URL, views.settings_page, name="settings_page"),
+    path(SETTINGS_BASE_URL, settings_page, name="settings_page"),
 ]
 
 urlpatterns += router.urls
