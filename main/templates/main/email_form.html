@@ -1,6 +1,7 @@
 <form method="POST" id="send-cv-email-form" action="{% url 'send_cv_to_email' candidate.id %}">
     {% csrf_token %}
     <div class="form-group d-flex flex-wrap justify-content-between gap-2">
+        <input type="hidden" name="language" value="{{ selected_language }}">
         <input type="email" name="email" id="email" placeholder="Enter email" required class="form-control d-inline" style="width: auto; display: inline-block;">
         <button type="submit" class="btn btn-primary">
             {{ email_submit_btn_title|default:"Send PDF to Email" }}
