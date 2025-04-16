@@ -1,0 +1,18 @@
+<h5 class="card-title">{{ contacts_title }}</h5>
+{% if contacts %}
+    {% for contact in contacts %}
+        <span class="card-text">{{ contact.contact_type.contact_type }}: </span>
+        {% if contact.contact_type.contact_type == "Email" %}
+            <a href="mailto:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
+        {% elif contact.contact_type.contact_type == "Phone" %}
+            <a href="tel:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
+        {% elif contact.contact_type.contact_type == "Profile" %}
+            <a href="{{ contact.contact }}" class="card-text"
+               target="_blank">{{ contact.contact }}</a>
+        {% else %}
+            <p class="card-text">{{ contact.contact }}</p>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <p class="card-text">{{ no_contacts_message }}</p>
+{% endif %}

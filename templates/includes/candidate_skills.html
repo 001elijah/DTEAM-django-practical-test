@@ -1,0 +1,10 @@
+<h5 class="card-title">{{ skills_title }}</h5>
+<div class="d-flex align-items-center justify-content-start flex-wrap gap-2">
+    {% if skills %}
+        {% for skill in skills %}
+            <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
+        {% endfor %}
+    {% else %}
+        <span class="card-text">{{ no_skills_message }}</span>
+    {% endif %}
+</div>
