@@ -2,9 +2,23 @@
     {% csrf_token %}
     <div class="form-group d-flex flex-wrap justify-content-between gap-2">
         <input type="hidden" name="language" value="{{ selected_language }}">
-        <input type="email" name="email" id="email" placeholder="Enter email" required class="form-control d-inline" style="width: auto; display: inline-block;">
-        <button type="submit" class="btn btn-primary">
-            {{ email_submit_btn_title|default:"Send PDF to Email" }}
+        <label>
+            <input type="email" name="email" id="email" placeholder="Enter email" required class="form-control d-inline"
+                   style="width: auto; display: inline-block;">
+        </label>
+        <button
+                type="submit"
+                id="submit-email-btn"
+                class="btn btn-primary btn-fixed-width btn-no-uppercase"
+        >
+            <span
+                    id="email-spinner"
+                    class="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                    style="display: none;"
+            ></span>
+            {{ email_submit_btn_title|default:"Send PDF" }}
         </button>
     </div>
 </form>

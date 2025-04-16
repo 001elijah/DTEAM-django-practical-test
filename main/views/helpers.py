@@ -3,6 +3,7 @@ import random
 import re
 
 from django.conf import settings
+from django.contrib import messages
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
@@ -99,8 +100,8 @@ def _get_cv_detail_ui_context(candidate):
         "home_btn_title": "< Home",
         "audit_logs_url": f"/{AUDIT_BASE_URL}{LOGS_BASE_URL}",
         "settings_url": f"/{SETTINGS_BASE_URL}",
-        "download_btn_title": "Download as PDF",
-        "email_submit_btn_title": "Send PDF to Email",
+        "download_btn_title": "Download PDF",
+        "email_submit_btn_title": "Send PDF",
         "translate_btn_title": "Translate",
         "bio_title": "Bio",
         "skills_title": "Skills",
@@ -128,10 +129,10 @@ def cv_content_to_translate(cv_detail_context):
             "no_contacts_message", "No contacts message is unavailable."
         ),
         "download_btn_title": cv_detail_context.get(
-            "download_btn_title", "Download as PDF"
+            "download_btn_title", "Download PDF"
         ),
         "email_submit_btn_title": cv_detail_context.get(
-            "email_submit_btn_title", "Send PDF to Email"
+            "email_submit_btn_title", "Send PDF"
         ),
         "translate_btn_title": cv_detail_context.get(
             "translate_btn_title", "Translate"
@@ -179,6 +180,7 @@ def translate_cv_content(target_language, cv_detail_context):
         translation = response.output_text
 
     except Exception as e:
+        print(f"Error translating CV content: {str(e)}")
         return JsonResponse({"Exception error": str(e)}, status=500)
 
     return translation
@@ -191,8 +193,16 @@ def process_cv_context(pk, selected_language=None):
     cv_detail_context.update(cv_detail_ui_context)
     if selected_language:
         translation_data = translate_cv_content(selected_language, cv_detail_context)
-        parsed_translation_data = extract_clean_json(translation_data)
-        cv_detail_context.update(parsed_translation_data)
+        if isinstance(translation_data, JsonResponse):
+            error_message = translation_data.status_code
+            if error_message == 500:
+                raise ValueError(
+                    "An internal server error occurred. "
+                    "Translation failed with status code 500."
+                )
+        if isinstance(translation_data, str):
+            parsed_translation_data = extract_clean_json(translation_data)
+            cv_detail_context.update(parsed_translation_data)
 
     return cv_detail_context
 
@@ -206,3 +216,17 @@ def generate_candidate_pdf(cv_detail_context):
     )
     HTML(string=html_content).write_pdf(response)
     return response
+
+
+def remove_message(request):
+    if request.method == "POST":
+        data = json.loads(request.body)
+        message_to_remove = data.get("message", "")
+
+        storage = messages.get_messages(request)
+        storage.used = False
+        storage._queued_messages = [
+            msg for msg in storage if str(msg) != message_to_remove
+        ]
+
+        return JsonResponse({"status": "success"})

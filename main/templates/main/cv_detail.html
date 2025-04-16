@@ -9,6 +9,27 @@
         <header>
             {% include "includes/navbar.html" with home_btn_title=home_btn_title audit_logs_url=audit_logs_url %}
         </header>
+        {% if error_message %}
+            <div class="container mt-3">
+                <div class="d-flex justify-content-between alert alert-dismissable alert-danger" role="alert">
+                    {{ error_message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        {% endif %}
+        {% if messages %}
+            <div class="container mt-3">
+                {% for message in messages %}
+                    <div
+                            class="d-flex justify-content-between alert alert-dismissable {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}"
+                            role="alert"
+                    >
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     {% endif %}
     <section id="cv-detail">
         <span>{{ translation }}</span>
@@ -16,9 +37,9 @@
             {% if request %}
                 <div class="d-flex flex-wrap justify-content-between mb-4 gap-2">
                     <a href="{% url 'cv_generate_pdf' candidate.id %}?language={{ request.GET.language }}"
-                       class="btn btn-primary"
+                       class="btn btn-primary d-flex align-items-center btn-no-uppercase"
                        target="_blank">
-                        {{ download_btn_title|default:"Download as PDF" }}
+                        {{ download_btn_title|default:"Download PDF" }}
                     </a>
                     {% include "main/email_form.html" with email_submit_btn_title=email_submit_btn_title selected_language=request.GET.language %}
                     {% include 'main/translate_widget.html' with languages_list=languages_list translate_btn_title=translate_btn_title %}
@@ -79,4 +100,55 @@
             </div>
         </div>
     </section>
+    <!-- Bootstrap Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const emailForm = document.getElementById("send-cv-email-form");
+            const submitEmailButton = document.getElementById("submit-email-btn");
+            const emailSpinner = document.getElementById("email-spinner");
+
+            const translateWidget = document.getElementById("translate-widget");
+            const submitTranslateButton = document.getElementById("submit-translate-btn");
+            const translateSpinner = document.getElementById("translate-spinner");
+
+            emailForm.addEventListener("submit", function () {
+                submitEmailButton.disabled = true;
+
+                emailSpinner.style.display = "inline-block";
+
+                submitEmailButton.textContent = "";
+                submitEmailButton.classList.add("disabled");
+                submitEmailButton.appendChild(emailSpinner);
+            });
+
+            translateWidget.addEventListener("submit", function () {
+                submitTranslateButton.disabled = true;
+
+                translateSpinner.style.display = "inline-block";
+
+                submitTranslateButton.textContent = "";
+                submitTranslateButton.classList.add("disabled");
+                submitTranslateButton.appendChild(translateSpinner);
+            });
+
+            const alerts = document.querySelectorAll('.alert');
+
+            alerts.forEach(alert => {
+                alert.addEventListener('closed.bs.alert', function () {
+                    const messageContent = alert.textContent.trim();
+
+                    fetch('/remove-message/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                        },
+                        body: JSON.stringify({message: messageContent}),
+                    });
+                });
+            });
+        });
+    </script>
 {% endblock %}
