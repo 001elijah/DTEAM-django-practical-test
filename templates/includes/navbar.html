@@ -7,15 +7,15 @@
                 <div class="d-flex flex-wrap align-items-center gap-2">
                     {% if audit_logs_url %}
                         <a href="{{ audit_logs_url }}" class="btn btn-secondary btn-sm">
-                            Audit Logs
+                            {{ audit_logs_btn_title|default:"Audit logs" }}
                         </a>
                     {% endif %}
                     {% if settings_url %}
                         <a href="{{ settings_url }}" class="btn btn-secondary btn-sm">
-                            Settings
+                            {{ settings_btn_title|default:"Settings" }}
                         </a>
                     {% endif %}
-                    <button type="submit" class="btn btn-outline-danger btn-sm">Logout</button>
+                    <button type="submit" class="btn btn-outline-danger btn-sm">{{ logout_btn_title|default:"Logout" }}</button>
                 </div>
             </form>
         </div>
