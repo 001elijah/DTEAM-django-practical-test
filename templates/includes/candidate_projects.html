@@ -1,0 +1,9 @@
+<h5 class="card-title">{{ projects_title }}</h5>
+{% if projects %}
+    {% for project in projects %}
+        <p class="card-text"><b>{{ project.project_name }}</b></p>
+        <p class="card-text">{{ project.project_description }}</p>
+    {% endfor %}
+{% else %}
+    <p class="card-text">{{ no_projects_message }}</p>
+{% endif %}

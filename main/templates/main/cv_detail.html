@@ -9,27 +9,7 @@
         <header>
             {% include "includes/navbar.html" with home_btn_title=home_btn_title audit_logs_url=audit_logs_url %}
         </header>
-        {% if error_message %}
-            <div class="container mt-3">
-                <div class="d-flex justify-content-between alert alert-dismissable alert-danger" role="alert">
-                    {{ error_message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                </div>
-            </div>
-        {% endif %}
-        {% if messages %}
-            <div class="container mt-3">
-                {% for message in messages %}
-                    <div
-                            class="d-flex justify-content-between alert alert-dismissable {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}"
-                            role="alert"
-                    >
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
+        {% include "includes/alerts.html" %}
     {% endif %}
     <section id="cv-detail">
         <span>{{ translation }}</span>
@@ -57,45 +37,11 @@
                         <p class="card-text">{{ no_bio_message }}</p>
                     {% endif %}
                     <hr class="my-4">
-                    <h5 class="card-title">{{ skills_title }}</h5>
-                    <div class="d-flex align-items-center justify-content-start flex-wrap gap-2">
-                        {% if skills %}
-                            {% for skill in skills %}
-                                <span class="badge {{ skill.class }} card-text">{{ skill.skill_name }}</span>
-                            {% endfor %}
-                        {% else %}
-                            <span class="card-text">{{ no_skills_message }}</span>
-                        {% endif %}
-                    </div>
+                    {% include "includes/candidate_skills.html" %}
                     <hr class="my-4">
-                    <h5 class="card-title">{{ projects_title }}</h5>
-                    {% if projects %}
-                        {% for project in projects %}
-                            <p class="card-text"><b>{{ project.project_name }}</b></p>
-                            <p class="card-text">{{ project.project_description }}</p>
-                        {% endfor %}
-                    {% else %}
-                        <p class="card-text">{{ no_projects_message }}</p>
-                    {% endif %}
+                    {% include "includes/candidate_projects.html" %}
                     <hr class="my-4">
-                    <h5 class="card-title">{{ contacts_title }}</h5>
-                    {% if contacts %}
-                        {% for contact in contacts %}
-                            <span class="card-text">{{ contact.contact_type.contact_type }}: </span>
-                            {% if contact.contact_type.contact_type == "Email" %}
-                                <a href="mailto:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
-                            {% elif contact.contact_type.contact_type == "Phone" %}
-                                <a href="tel:{{ contact.contact }}" class="card-text">{{ contact.contact }}</a>
-                            {% elif contact.contact_type.contact_type == "Profile" %}
-                                <a href="{{ contact.contact }}" class="card-text"
-                                   target="_blank">{{ contact.contact }}</a>
-                            {% else %}
-                                <p class="card-text">{{ contact.contact }}</p>
-                            {% endif %}
-                        {% endfor %}
-                    {% else %}
-                        <p class="card-text">{{ no_contacts_message }}</p>
-                    {% endif %}
+                    {% include "includes/candidate_contacts.html" %}
                 </div>
             </div>
         </div>

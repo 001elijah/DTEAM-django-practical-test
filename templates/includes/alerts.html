@@ -1,0 +1,22 @@
+{% if error_message %}
+    <div class="container mt-3">
+        <div class="d-flex justify-content-between alert alert-dismissable alert-danger" role="alert">
+            {{ error_message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+{% endif %}
+{% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div
+                class="d-flex justify-content-between alert alert-dismissable
+                {% if message.tags == 'error' %}alert-danger{% else %}alert-{{ message.tags }}{% endif %}"
+                role="alert"
+            >
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
