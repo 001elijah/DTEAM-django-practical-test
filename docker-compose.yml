@@ -3,7 +3,7 @@
        build:
          context: .
        container_name: django_app
-       command: sh -c "/app/wait-for-it.sh ${POSTGRES_HOST}:${POSTGRES_PORT} -- python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+       command: sh -c "/app/wait-for-it.sh ${POSTGRES_HOST}:${POSTGRES_PORT} -- python manage.py migrate && gunicorn CVProject.wsgi:application --bind 0.0.0.0:8000"
        environment:
          - ENVIRONMENT=production
        env_file:
@@ -17,12 +17,18 @@
 
      redis:
        image: "redis:alpine"
+       container_name: redis_cache
        ports:
          - "6379:6379"
 
      celery:
        build: .
-       command: celery -A CVProject worker --loglevel=info
+       command: celery -A CVProject worker --loglevel=INFO --concurrency=2
+       logging:
+         driver: "json-file"
+         options:
+           max-size: "100m"
+           max-file: "3"
        volumes:
          - .:/code
        depends_on:
