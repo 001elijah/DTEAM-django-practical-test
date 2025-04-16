@@ -2,7 +2,7 @@ from celery import shared_task
 from django.conf import settings
 from django.core.mail import EmailMessage
 
-from main.utils import generate_candidate_pdf
+from main.views.helpers import generate_candidate_pdf
 
 from .models import Candidate
 
