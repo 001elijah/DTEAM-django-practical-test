@@ -103,7 +103,6 @@ def send_cv_to_email(request, pk):
 
                 try:
                     result = AsyncResult(task_id.id, app=current_app)
-                    print(f"Task result => {result.get()}")
                     if result.failed():
                         raise Exception(f"Task failed with error: {result.result}")
                 except Exception as e:
